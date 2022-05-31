@@ -1,0 +1,32 @@
+<div class="box">
+    <form (ngSubmit)="add()" #formBox="ngForm">
+        <h1>Add Furniture</h1>
+
+        <label>Furniture type:</label>
+        <select name="typeId" [(ngModel)]="furniture.typeId" #typeIdBox="ngModel" required>
+            <option disabled selected>Select...</option>
+            <option *ngFor="let t of types" [value]="t._id">{{t.type}}</option>
+        </select>
+        <span *ngIf="typeIdBox.touched && typeIdBox.errors?.['required']">Missing type</span>
+
+        <label>Dimensions:</label>
+        <input type="text" name="dimension" #dimensionBox="ngModel" [(ngModel)]="furniture.dimension" required minlength="2" maxlength="100">
+        <span *ngIf="dimensionBox.touched && dimensionBox.errors?.['required']">Missing dimensions</span>
+        <span *ngIf="dimensionBox.touched && dimensionBox.errors?.['minlength']">Dimensions are too short</span>
+        <span *ngIf="dimensionBox.touched && dimensionBox.errors?.['maxlength']">Dimensions are too long</span>
+
+        <label>Color:</label>
+        <input type="text" name="color" #colorBox="ngModel" [(ngModel)]="furniture.color" required minlength="0" maxlength="100">
+        <span *ngIf="colorBox.touched && colorBox.errors?.['required']">Missing color</span>
+        <span *ngIf="colorBox.touched && colorBox.errors?.['minlength']">Color is too short</span>
+        <span *ngIf="colorBox.touched && colorBox.errors?.['maxlength']">Color is too long</span>
+
+        <label>Price:</label>
+        <input type="price" name="price" step="0.01" #priceBox="ngModel" [(ngModel)]="furniture.price" required min="0" max="100">
+        <span *ngIf="priceBox.touched && priceBox.errors?.['required']">Missing Price</span>
+        <span *ngIf="priceBox.touched && priceBox.errors?.['max']">Price can't be negative</span>
+        <span *ngIf="priceBox.touched && priceBox.errors?.['max']">Price can't exceed 1000</span>
+
+        <button [disabled]="formBox.invalid">Add</button>
+    </form>
+</div>

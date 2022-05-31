@@ -1,0 +1,8 @@
+<div>
+    <span>Furniture Type: {{furniture.type.type}}</span><br>
+
+    <span>Dimension: {{furniture.dimension}}</span><br>
+    <span>Color: {{furniture.color}}</span><br>
+    <span>Price: {{furniture.price | currency: "USD"}}</span><br>
+    <button (click)="deleteFurniture(furniture._id)">🚮</button>
+</div>

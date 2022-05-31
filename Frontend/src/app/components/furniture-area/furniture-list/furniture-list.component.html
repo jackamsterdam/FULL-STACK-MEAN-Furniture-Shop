@@ -1,0 +1,10 @@
+<div>
+    <label>Select furniture type:</label>
+    <select (change)="getFurniture($event)">
+        <option selected disabled>Select...</option>
+        <option *ngFor="let t of types" [value]="t._id">{{t.type}}</option>
+    </select>
+    <br><br>
+
+    <app-furniture-card *ngFor="let f of furniture" [furniture]="f" (deleteMe)="deleteThisFurniture($event)"></app-furniture-card>
+</div>
